@@ -47,5 +47,4 @@ module.exports = function (router) {
       res.status(200).json(respRaw)
     })
   })
-
 }
