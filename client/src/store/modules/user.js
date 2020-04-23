@@ -12,14 +12,12 @@ const getters = {
 }
 
 const actions = {
-  actions: {
-    logInUser ({commit}, payload) {
-      if (payload.email === 'test1@user.com' && payload.password === 'test111') {
-        payload.userId = '5a777f0a75f64a1698221d98'
-        commit('logInUser', payload)
-      } else {
-        commit('loginError')
-      }
+  logInUser ({commit}, payload) {
+    if (payload.email === 'test1@user.com' && payload.password === 'test111') {
+      payload.userId = '5a777f0a75f64a1698221d98'
+      commit('logInUser', payload)
+    } else {
+      commit('loginError')
     }
   }
 }

@@ -1,5 +1,3 @@
-// import Vue from 'vue'
-
 const state = {
   months: [
     { name: 'Zero', abrev: 'ZZZ', index: 0 },

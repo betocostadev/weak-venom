@@ -115,12 +115,23 @@ export default {
       { icon: 'help', text: 'Help' }
     ]
   }),
+  computed: {
+    isLoggedIn () {
+      return this.$store.getters.isLoggedIn
+    }
+  },
   methods: {
     menuAction: function () {
       // TODO
     },
     showProfile: function () {
       console.log('show profile clicked!')
+    }
+  },
+  mounted () {
+    console.log('Is user logged in?', this.isLoggedIn)
+    if (!this.isLoggedIn) {
+      this.$router.push({ path: '/login' })
     }
   }
 }

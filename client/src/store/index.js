@@ -7,12 +7,6 @@ import transactions from './modules/transactions'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
     user,
     transactions
