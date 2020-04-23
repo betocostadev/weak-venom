@@ -1,4 +1,4 @@
-# weak-venom
+# client
 
 > A Vue.js project
 
