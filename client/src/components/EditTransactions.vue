@@ -120,17 +120,17 @@ export default {
     transactionDatePicker: false
   }),
   methods: {
-    saveTransaction () {
+    saveTransaction: function () {
       console.log('Saving transaction record:')
-      // TODO: wire up Vuex action
+      this.$store.dispatch('saveTransaction', this.transaction)
 
       this.dialog = false
     },
-    showEditTransactionDialog () {
+    showEditTransactionDialog: function () {
       this.transaction.transactionDate = this.getCurrentDate()
       this.dialog = true
     },
-    getCurrentDate () {
+    getCurrentDate: function () {
       const dt = new Date(Date.now())
       let month = '' + (dt.getMonth() + 1)
       let day = '' + dt.getDate()

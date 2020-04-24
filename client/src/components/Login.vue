@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -56,15 +57,10 @@ export default {
     }
   },
   computed: {
-    isLoggedIn () {
-      return this.$store.getters.isLoggedIn
-    },
-    loginError () {
-      return this.$store.getters.loginError
-    }
+    ...mapGetters(['isLoggedIn', 'loginError'])
   },
   methods: {
-    login () {
+    login: function () {
       const vm = this
       const payload = {
         email: this.email,
@@ -75,12 +71,11 @@ export default {
           if (vm.isLoggedIn) {
             this.$router.push({ path: '/' })
           } else {
-            // show alert to user
             vm.showAlert = true
           }
         })
     },
-    cancel () {
+    cancel: function () {
       console.log('The user does not want to login!')
     }
   }

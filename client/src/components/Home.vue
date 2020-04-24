@@ -80,7 +80,7 @@
         placeholder="Search"
         style="max-width: 500px; min-width: 128px"
       ></v-text-field> -->
-      <!-- <header-actions></header-actions> -->
+      <header-actions></header-actions>
     </v-toolbar>
     <v-content>
       <v-container fluid>
@@ -96,12 +96,19 @@
 <script>
 import Transactions from './Transactions.vue'
 import EditTransaction from './EditTransactions.vue'
+import HeaderActions from './HeaderActions.vue'
 
 export default {
   name: 'Home',
   components: {
     Transactions,
-    EditTransaction
+    EditTransaction,
+    HeaderActions
+  },
+  computed: {
+    isLoggedIn () {
+      return this.$store.getters.isLoggedIn
+    }
   },
   data: () => ({
     dialog: false,
@@ -115,11 +122,6 @@ export default {
       { icon: 'help', text: 'Help' }
     ]
   }),
-  computed: {
-    isLoggedIn () {
-      return this.$store.getters.isLoggedIn
-    }
-  },
   methods: {
     menuAction: function () {
       // TODO
@@ -128,8 +130,8 @@ export default {
       console.log('show profile clicked!')
     }
   },
-  mounted () {
-    console.log('Is user logged in?', this.isLoggedIn)
+  mounted: function () {
+    console.log('Is user logged in? ', this.isLoggedIn)
     if (!this.isLoggedIn) {
       this.$router.push({ path: '/login' })
     }

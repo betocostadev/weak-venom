@@ -3,7 +3,6 @@
     <img src="./assets/logo.png">
     <router-view/>
   </div> -->
-  <!-- Using Vuetify -->
   <v-app id="app">
     <router-view />
   </v-app>

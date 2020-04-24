@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -86,40 +87,32 @@ export default {
     }
   },
   computed: {
-    currentMonth () {
-      return this.$store.state.transactions.currentMonth
-    },
-    currentYear () {
-      return this.$store.state.transactions.currentYear
-    },
-    months () {
-      return this.$store.state.transactions.months
-    },
-    items () {
-      return this.$store.getters.transactionsByMonth
-    },
-    balanceCharges () {
-      return this.$store.getters.balanceCharges
-    },
-    balanceDeposits () {
-      return this.$store.getters.balanceDeposits
-    }
+    ...mapState({
+      months: state => state.transactions.months,
+      currentYear: state => state.transactions.currentYear,
+      currentMonth: state => state.transactions.currentMonth
+    }),
+    ...mapGetters({
+      items: 'transactionsByMonth',
+      balanceCharges: 'balanceCharges',
+      balanceDeposits: 'balanceDeposits'
+    })
   },
   methods: {
-    getTransactionsByMonth () {
+    getTransactionsByMonth: function () {
       this.$store.dispatch('getTransactionsByMonth')
     },
-    getPreviousMonthsBalances () {
+    getPreviousMonthsBalances: function () {
       this.$store.dispatch('getPreviousMonthsBalances')
     },
-    gotoMonth (increment) {
+    gotoMonth: function (increment) {
       this.$store.dispatch('gotoMonth').then(() => {
         // Load selected month transaction data now...
         this.getPreviousMonthsBalances()
         this.getTransactionsByMonth()
       })
     },
-    gotoCurrentMonth () {
+    gotoCurrentMonth: function () {
       this.$store.dispatch('gotoCurrentMonth').then(() => {
         // Load selected month transaction data now...
         this.getPreviousMonthsBalances()
