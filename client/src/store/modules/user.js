@@ -23,6 +23,9 @@ const actions = {
         let data = resp.data
         if (data && data.length > 0) {
           // Test password entered (payload) against user object
+          // // Not encrypted
+          // if (data[0].password === payload.password) {
+          // Using encrypted passwords
           const pwdHash = data[0].password
           if (bcrypt.compareSync(payload.password, pwdHash)) {
             const user = data[0]
